@@ -34,10 +34,12 @@ def search_for(ifile):
         print("****Pattern not found")
 
 def version():
+    '''Print the version of the software'''
     print("Version of this software is 0.1")
     sys.exit(0)
 
 def main():
+    ''' The main function of the program '''
     global invest_file 
     global opened_file 
     global file_available
@@ -47,7 +49,7 @@ def main():
         usage()
         exit()
     try:
-        opts, args = getopt.getopt(sys.argv[1:],"f:v",["file","version"])
+        opts, args = getopt.getopt(sys.argv[1:],"f:vep",["file","version","email","phone"])
 #    except getopt.GetopError as err:
 #        print(str(err))
 #        usage()
@@ -56,13 +58,17 @@ def main():
         sys.exit()
 
     for o,v in opts:
-        if o in ("-h" "--help"):
+        if o in ("-h", "--help"):
             usage()
-        elif o in ("-f" "--file"):
+        elif o in ("-f", "--file"):
             invest_file = v
             file_available = True
-        elif o in ("-v" "--version"):
+        elif o in ("-v", "--version"):
             version()
+        elif o in ("-e", "--email"):
+            print("Checking for the emailS")
+        elif o in ("-p", "--phone"):
+            print("Checking for the phoneS")
         else:
             file_available = False
             assert False, "unhandled shit"
