@@ -5,7 +5,7 @@ import getopt
 def usage():
     """ Print the usage of the softare. """
     print("My Incident Tool knife.")
-    print()
+    print("")
     print("Usage :irtools -f target_file.")
     print("-f or --file, file that you need to search into")
     print("Target file must be a text file.")
@@ -32,6 +32,11 @@ def search_for(ifile):
             print(elem)
     else:
         print("****Pattern not found")
+
+def version():
+    print("Version of this software is 0.1")
+    sys.exit(0)
+
 def main():
     global invest_file 
     global opened_file 
@@ -42,10 +47,13 @@ def main():
         usage()
         exit()
     try:
-        opts, args = getopt.getopt(sys.argv[1:],"f:",["file"])
-    except getopt.GetopError as err:
-        print(str(err))
+        opts, args = getopt.getopt(sys.argv[1:],"f:v",["file","version"])
+#    except getopt.GetopError as err:
+#        print(str(err))
+#        usage()
+    except:
         usage()
+        sys.exit()
 
     for o,v in opts:
         if o in ("-h" "--help"):
@@ -54,7 +62,7 @@ def main():
             invest_file = v
             file_available = True
         elif o in ("-v" "--version"):
-            print("Version of this software is 0.1")
+            version()
         else:
             file_available = False
             assert False, "unhandled shit"
@@ -65,6 +73,8 @@ def main():
     opened_file = open_file(invest_file)
     print("***Search for the associated regex")
     search_for(opened_file)
+
+    opened_file.close()
 
 
 main()
