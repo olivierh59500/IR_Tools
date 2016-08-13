@@ -21,15 +21,18 @@ def open_file(ifile):
         print("Didn't work")
         exit()
     print("** Loading was successfull \n")
-    return file
+    full_text = file.read()
+    file.close()
+    return full_text
 
 
-def search_for(ifile):
-    phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
-    mo = phoneNumRegex.findall(opened_file.read())
+def search_for_phone(inv_string):
+#    phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+    phoneNumRegex = re.compile(r'''((\d{3}|\(\d{3}\))?(\s|-|\.)?(\d{3})(\s|-|\.)(\d{4})(\s*(ext|x|ext.)\s*(\d{2,5}))?)''', re.VERBOSE)
+    mo = phoneNumRegex.findall(inv_string)
     if mo:
         for elem in mo:
-            print(elem)
+            print(elem[0])
     else:
         print("****Pattern not found")
 
@@ -78,9 +81,6 @@ def main():
         exit()
     opened_file = open_file(invest_file)
     print("***Search for the associated regex")
-    search_for(opened_file)
-
-    opened_file.close()
-
+    search_for_phone(opened_file)
 
 main()
