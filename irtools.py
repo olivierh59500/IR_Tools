@@ -8,13 +8,15 @@ def usage():
     print("")
     print("Usage :irtools -f target_file.")
     print("-f or --file, file that you need to search into")
+    print("-e or --email, check for emails in the file")
+    print("-p or --phone, check for US phone number in the file")
     print("Target file must be a text file.")
     print("Search for american phone number")
 
 
 def open_file(ifile):
     """ Load the file thad need to be investigated. """
-    print("* Truing to open File" + ifile  )
+    print("* Trying to open File" + ifile  )
     try:
         file = open(ifile,"r")
     except:
@@ -43,9 +45,15 @@ def version():
 
 def main():
     ''' The main function of the program '''
+    # global variables
     global invest_file 
     global opened_file 
     global file_available
+    global phone_selected
+    global email_selected
+    # initialization of variables
+    email_selected = False
+    phone_selected = False
     file_available = False
 
     if not len(sys.argv[1:]):
@@ -70,8 +78,10 @@ def main():
             version()
         elif o in ("-e", "--email"):
             print("Checking for the emailS")
+            email_selected = True
         elif o in ("-p", "--phone"):
             print("Checking for the phoneS")
+            phone_selected = True
         else:
             file_available = False
             assert False, "unhandled shit"
@@ -81,6 +91,8 @@ def main():
         exit()
     opened_file = open_file(invest_file)
     print("***Search for the associated regex")
+    print email_selected
+    print phone_selected
     search_for_phone(opened_file)
 
 main()
