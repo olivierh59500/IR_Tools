@@ -1,8 +1,10 @@
 Hello it's a test file that with some email address in it for example test@toto.local and sometimes phone number like 01 02 03 04 05. It will also help you to search for a phone number with indicator like +33 01 02 03 04 05 or even 0102030405 +330102030405.
 It will also allow you search for some url in different types like http://test.com or http://www.test.com even with specific port in it like http://www.test.com:1010.
 Even url like this http://www.test.com:1010/ready
+ok there is no ip address os lets check 127.0.0.1 or even 192.168.0.1 or 1.1.1.1 or the false one 2.52.23.289
 you will also be able to search for american phone number like this :
 My number is 415-555-4242 or even (415) 555-4242
 Here is another number that can be interestingto check to see if we can find lots of stuff there : 555-555-3131 or even 654-746-1209
 There is also another type of email adress like imdabest@hacker.ninja
 toto@gmail.com
+Other stuff like this is https://google.fr or even https://otherstuff.itslongnow

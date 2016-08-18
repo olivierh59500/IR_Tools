@@ -27,6 +27,26 @@ def open_file(ifile):
     file.close()
     return full_text
 
+def search_for_url(inv_string):
+    urlRegex = re.compile(r'''(https?\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,})''', re.VERBOSE)
+    mo = urlRegex.findall(inv_string)
+    if mo:
+        for elem in mo:
+            print elem
+           # print(elem[0]) ------- Don't understand why the pattern work in groups :(
+    else:
+        print("****** Url Pattern not found")
+
+def search_for_ipv4(inv_string):
+    ipv4Regex = re.compile(r'''((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))''',re.VERBOSE)
+    mo = ipv4Regex.findall(inv_string)
+    if mo:
+        for elem in mo:
+            print(elem[0])
+    else:
+        print("****ipv4 pattern not found")
+
+
 def search_for_email(inv_string):
     emailRegex = re.compile(r'''([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+(\.[a-zA-Z]+))''', re.VERBOSE)
     mo = emailRegex.findall(inv_string)
@@ -102,5 +122,7 @@ def main():
     print phone_selected
     search_for_phone(opened_file)
     search_for_email(opened_file)
+    search_for_url(opened_file)
+    search_for_ipv4(opened_file)
 
 main()
