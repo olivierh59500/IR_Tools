@@ -27,9 +27,16 @@ def open_file(ifile):
     file.close()
     return full_text
 
+def search_for_email(inv_string):
+    emailRegex = re.compile(r'''([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+(\.[a-zA-Z]+))''', re.VERBOSE)
+    mo = emailRegex.findall(inv_string)
+    if mo:
+        for elem in mo:
+            print(elem[0])
+    else:
+        print("******Pattern not found")
 
 def search_for_phone(inv_string):
-#    phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
     phoneNumRegex = re.compile(r'''((\d{3}|\(\d{3}\))?(\s|-|\.)?(\d{3})(\s|-|\.)(\d{4})(\s*(ext|x|ext.)\s*(\d{2,5}))?)''', re.VERBOSE)
     mo = phoneNumRegex.findall(inv_string)
     if mo:
@@ -94,5 +101,6 @@ def main():
     print email_selected
     print phone_selected
     search_for_phone(opened_file)
+    search_for_email(opened_file)
 
 main()

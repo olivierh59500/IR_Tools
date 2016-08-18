@@ -4,3 +4,5 @@ Even url like this http://www.test.com:1010/ready
 you will also be able to search for american phone number like this :
 My number is 415-555-4242 or even (415) 555-4242
 Here is another number that can be interestingto check to see if we can find lots of stuff there : 555-555-3131 or even 654-746-1209
+There is also another type of email adress like imdabest@hacker.ninja
+toto@gmail.com
