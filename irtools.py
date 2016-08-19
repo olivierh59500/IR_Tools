@@ -10,6 +10,7 @@ def usage():
     print("-f or --file, file that you need to search into")
     print("-e or --email, check for emails in the file")
     print("-p or --phone, check for US phone number in the file")
+    print("-v or --version, check the version of the software")
     print("Target file must be a text file.")
     print("Search for american phone number")
 
@@ -28,6 +29,7 @@ def open_file(ifile):
     return full_text
 
 def search_for_url(inv_string):
+    '''Function that search for a url '''
     urlRegex = re.compile(r'''(https?\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,})''', re.VERBOSE)
     mo = urlRegex.findall(inv_string)
     if mo:
@@ -38,6 +40,7 @@ def search_for_url(inv_string):
         print("****** Url Pattern not found")
 
 def search_for_ipv4(inv_string):
+    ''' function that search for an ipv4 (valid)'''
     ipv4Regex = re.compile(r'''((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))''',re.VERBOSE)
     mo = ipv4Regex.findall(inv_string)
     if mo:
@@ -48,6 +51,7 @@ def search_for_ipv4(inv_string):
 
 
 def search_for_email(inv_string):
+    '''function that search for an email string'''
     emailRegex = re.compile(r'''([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+(\.[a-zA-Z]+))''', re.VERBOSE)
     mo = emailRegex.findall(inv_string)
     if mo:
@@ -57,6 +61,7 @@ def search_for_email(inv_string):
         print("******Pattern not found")
 
 def search_for_phone(inv_string):
+    '''function that search for an American phone number'''
     phoneNumRegex = re.compile(r'''((\d{3}|\(\d{3}\))?(\s|-|\.)?(\d{3})(\s|-|\.)(\d{4})(\s*(ext|x|ext.)\s*(\d{2,5}))?)''', re.VERBOSE)
     mo = phoneNumRegex.findall(inv_string)
     if mo:
@@ -88,7 +93,7 @@ def main():
         exit()
     try:
         opts, args = getopt.getopt(sys.argv[1:],"f:vep",["file","version","email","phone"])
-#    except getopt.GetopError as err:
+#    except getopt.GetopError as err:   #This is not working :(
 #        print(str(err))
 #        usage()
     except:
