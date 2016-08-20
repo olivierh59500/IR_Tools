@@ -12,7 +12,6 @@ def usage():
     print("-p or --phone, check for US phone number in the file")
     print("-v or --version, check the version of the software")
     print("Target file must be a text file.")
-    print("Search for american phone number")
 
 
 def open_file(ifile):
