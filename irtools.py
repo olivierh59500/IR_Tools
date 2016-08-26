@@ -10,6 +10,7 @@ def usage():
     print("-f or --file, file that you need to search into")
     print("-e or --email, check for emails in the file")
     print("-p or --phone, check for US phone number in the file")
+    print("-todefine or --todefine, check for FR phone number in the file")
     print("-v or --version, check the version of the software")
     print("Target file must be a text file.")
 
@@ -69,6 +70,17 @@ def search_for_phone(inv_string):
     else:
         print("****Pattern not found")
 
+def search_for_phone_fr(inv_string):
+    '''function that search for a French phone number'''
+    phoneFRNumRegex = re.compile(r'''(0[1-68]([-. ]?[0-9]{2}){4})''', re.VERBOSE)
+    mo = phoneFRNumRegex.findall(inv_string)
+    if mo:
+        for elem in mo:
+            print(elem[0])
+    else:
+        print("****Pattern not found")
+
+
 def version():
     '''Print the version of the software'''
     print("Version of this software is 0.1")
@@ -86,6 +98,7 @@ def main():
     email_selected = False
     phone_selected = False
     file_available = False
+    phone_fr_selected = False
 
     if not len(sys.argv[1:]):
         usage()
@@ -113,6 +126,9 @@ def main():
         elif o in ("-p", "--phone"):
             print("Checking for the phoneS")
             phone_selected = True
+        elif o in ("-pf", "--phonef"):
+            print("Checkinf for the french phones")
+            phone_fr_selected = True
         else:
             file_available = False
             assert False, "unhandled shit"
@@ -124,9 +140,11 @@ def main():
     print("***Search for the associated regex")
     print email_selected
     print phone_selected
+    print phone_fr_selected
     search_for_phone(opened_file)
     search_for_email(opened_file)
     search_for_url(opened_file)
     search_for_ipv4(opened_file)
+    search_for_phone_fr(opened_file)
 
 main()

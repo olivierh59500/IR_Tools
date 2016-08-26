@@ -9,7 +9,7 @@ Implemented yet :
 	Search for URL in a file
 
 TO DO:
-	Search for french phone number with extension
+	Search for european,french,uk,belgium,swiss,spanish,italian phone number with extension
 	Search for ipv6
-	Add new search types
+	Add new search types -- Looking for idea
 	Do a string of a file and then search for the regex ( For example search for hard coded IP or URL into a binary)
